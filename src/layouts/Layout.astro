@@ -1,0 +1,142 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh_CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="无锡一中 iMakeit 机器人社 —— 独立 · 协作 · 创造。机器人、无人机航拍、业余无线电，把想法造出来。"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#070a10" />
+    <link rel="icon" type="image/png" href="https://bu.dusays.com/2025/08/07/68946ada9c4d7.webp" />
+    <meta property="og:title" content="iMakeit 机器人社" />
+    <meta
+      property="og:description"
+      content="无锡一中 iMakeit 机器人社 —— 独立 · 协作 · 创造。"
+    />
+    <meta property="og:image" content="https://bu.dusays.com/2025/08/08/689564a53609b.jpg" />
+    <meta property="og:url" content="https://www.imakeit.cn" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="iMakeit 机器人社" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      />
+    </noscript>
+
+    <title>{title}</title>
+  </head>
+  <body class="bg-[--background] md:px-48 lg:px-20 px-9 tech-bg">
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    /* 赛博青蓝科技配色 */
+    --background: #070a10;
+    --background-2: #0b1019;
+    --sec: #00e5ff;
+    --sec-dim: #0bb6cf;
+    --accent: #5eff8b;
+    --white: #e6edf6;
+    --white-icon: #9fb3c898;
+    --white-icon-tr: #9fb3c810;
+    --grid-line: #1b2738;
+    --card: #0d131e;
+  }
+
+  * {
+    font-family:
+      "montserrat",
+      -apple-system,
+      system-ui,
+      sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  *::selection {
+    background-color: var(--sec);
+    color: var(--background);
+  }
+
+  /* 全站背景：电路网格 + 角落辉光 */
+  body.tech-bg {
+    background-color: var(--background);
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+      radial-gradient(
+        circle at 85% 0%,
+        rgba(0, 229, 255, 0.12) 0%,
+        transparent 42%
+      ),
+      radial-gradient(
+        circle at 0% 100%,
+        rgba(94, 255, 139, 0.07) 0%,
+        transparent 40%
+      );
+    background-size:
+      44px 44px,
+      44px 44px,
+      100% 100%,
+      100% 100%;
+    background-position:
+      center center,
+      center center,
+      center center,
+      center center;
+    background-attachment: fixed;
+  }
+
+  /* Scrollbar styles */
+
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--sec-dim);
+    border-radius: 10px;
+    border: 3px solid var(--background);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--sec);
+  }
+
+  /* Scrollbar styles for Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--sec-dim) var(--background);
+  }
+</style>

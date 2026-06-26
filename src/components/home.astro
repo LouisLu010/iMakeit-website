@@ -1,0 +1,84 @@
+---
+import Terminal from "../React/Terminal.tsx";
+import SkillsList from "../React/SkillsList.tsx";
+---
+
+<section class="text-[var(--white)] mt-12 md:mt-0" id="home">
+  <div class="max-w-5xl mx-auto space-y-8 md:py-28 pb-14">
+    <div class="text-left space-y-4">
+      <!-- 顶部状态条 -->
+      <div class="flex items-center gap-3">
+        <span class="relative flex h-2.5 w-2.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--sec)] opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-[var(--sec)]"></span>
+        </span>
+        <p class="text-md md:text-lg text-[var(--sec)] font-mono tracking-widest uppercase">
+          无锡一中 · 机器人社
+        </p>
+      </div>
+
+      <div
+        class="flex flex-col lg:flex-row lg:items-center space-y-4 lg:space-y-0 lg:space-x-8 md:gap-4"
+      >
+        <h1
+          class="text-[var(--white)] text-5xl md:text-6xl font-medium leading-none whitespace-nowrap glitch-title"
+        >
+          iMakeit<br />机器人社
+        </h1>
+        <p class="text-md md:text-2xl text-[var(--white-icon)]">
+          独立 · 协作 · 创造<br />读书 · 明理 · <span class="text-[var(--sec)] shiny-sec">求进</span>。
+        </p>
+      </div>
+
+      <!-- 技术关键词标签 -->
+      <div class="flex flex-wrap gap-2 pt-2">
+        {
+          ["Arduino", "3D Printing", "Raspberry Pi", "FPV", "SDR", "Python"].map(
+            (t) => (
+              <span class="px-3 py-1 text-xs font-mono rounded-full border border-[var(--white-icon-tr)] text-[var(--white-icon)] bg-[#0b111980] hover:border-[var(--sec)] hover:text-[var(--sec)] transition-colors">
+                {t}
+              </span>
+            )
+          )
+        }
+      </div>
+    </div>
+
+    <div class="flex flex-col lg:flex-row items-center gap-8">
+      <SkillsList client:load />
+      <div
+        class="flex justify-center md:w-[480px] w-full h-[370px] pt-3 relative"
+      >
+        <Terminal
+          client:load
+          glitchColors={["#00e5ff", "#b8f7ff", "#5eff8b"]}
+          glitchSpeed={70}
+          centerVignette={false}
+          outerVignette={true}
+          smooth={true}
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .shiny-sec {
+    background: linear-gradient(135deg, #00e5ff 25%, #b8f7ff 50%, #00e5ff 75%);
+    background-size: 400% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shine 3s linear infinite;
+  }
+
+  @keyframes shine {
+    0% {
+      background-position: 100% 50%;
+    }
+    30%,
+    70% {
+      background-position: 0% 50%;
+    }
+  }
+</style>

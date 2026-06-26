@@ -1,0 +1,137 @@
+---
+import { Image } from "astro:assets";
+
+interface Project {
+  title: string;
+  tag: string;
+  image: ImageMetadata | string;
+  link: string;
+  preview: string;
+  status: "active" | "wip" | "archived";
+  desc: string;
+}
+
+const statusMap = {
+  active: { label: "进行中", cls: "text-[var(--accent)] border-[var(--accent)]/40 bg-[var(--accent)]/5" },
+  wip: { label: "筹备中", cls: "text-[var(--sec)] border-[var(--sec)]/40 bg-[var(--sec)]/5" },
+  archived: { label: "往届回顾", cls: "text-[var(--white-icon)] border-[var(--white-icon-tr)] bg-[#ffffff04]" },
+} as const;
+
+const projects: Project[] = [
+  {
+    title: "废柴机器人",
+    tag: "ROBOTICS",
+    image: "https://bu.dusays.com/2025/08/07/68946ad977460.webp",
+    link: "https://blog.imakeit.cn/",
+    preview: "https://blog.imakeit.cn/",
+    status: "archived",
+    desc: "社团招牌赛事 —— 限定材料、限定时间，造出能跑能打的机器人。",
+  },
+  {
+    title: "纸飞机大赛",
+    tag: "EVENT",
+    image: "https://bu.dusays.com/2025/08/07/68946adca7369.webp",
+    link: "https://blog.imakeit.cn/",
+    preview: "https://blog.imakeit.cn/",
+    status: "archived",
+    desc: "把空气动力学玩明白 —— 看谁的纸飞机飞得最远、留空最久。",
+  },
+  {
+    title: "业余无线电通信",
+    tag: "HAM RADIO",
+    image: "https://bu.dusays.com/2025/08/07/68946ad976273.webp",
+    link: "https://blog.imakeit.cn/",
+    preview: "https://blog.imakeit.cn/",
+    status: "wip",
+    desc: "考取操作证、架设天线，用电磁波和远方的人通联。",
+  },
+  {
+    title: "3D 打印",
+    tag: "MAKING",
+    image: "https://bu.dusays.com/2025/08/07/68946adb7c200.webp",
+    link: "https://blog.imakeit.cn/",
+    preview: "https://blog.imakeit.cn/",
+    status: "active",
+    desc: "从建模到切片到打印，把屏幕里的设计变成手里的零件。",
+  },
+];
+---
+
+<section id="projects" class="py-16 border-t border-[#ffffff10] text-[var(--white)]">
+  <div class="max-w-5xl mx-auto">
+    <div class="flex items-center gap-3 mb-2">
+      <span class="text-[var(--sec)] font-mono text-sm tracking-widest">// PROJECTS</span>
+      <span class="h-px flex-1 bg-gradient-to-r from-[var(--sec)] to-transparent opacity-40"></span>
+    </div>
+    <h2 class="text-[var(--sec)] text-lg mb-2 shiny-sec">社团项目</h2>
+    <h3 class="text-4xl md:text-5xl font-medium mb-10">我们做过的事</h3>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {
+        projects.map((project) => {
+          const s = statusMap[project.status];
+          return (
+            <div class="group relative">
+              <a
+                href={project.preview}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block"
+              >
+                <div class="relative rounded-2xl overflow-hidden border border-[var(--white-icon-tr)] group-hover:border-[var(--sec)] transition-colors duration-300 mb-4">
+                  {typeof project.image === "string" ? (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      class="w-full h-48 md:h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  ) : (
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      class="w-full h-48 md:h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  )}
+                  {/* 渐变遮罩 + tag */}
+                  <div class="absolute inset-0 bg-gradient-to-t from-[#070a10] via-transparent to-transparent opacity-80" />
+                  <span class="absolute top-3 left-3 px-2 py-0.5 text-[10px] font-mono tracking-widest rounded bg-[#070a10]/70 border border-[var(--sec)]/40 text-[var(--sec)]">
+                    {project.tag}
+                  </span>
+                </div>
+                <div class="flex items-start justify-between gap-3 px-1">
+                  <div class="flex-grow">
+                    <h4 class="text-2xl font-semibold group-hover:text-[var(--sec)] transition-colors">
+                      {project.title}
+                    </h4>
+                    <p class="text-sm text-[var(--white-icon)] mt-1 leading-relaxed">
+                      {project.desc}
+                    </p>
+                  </div>
+                  <span class={`shrink-0 mt-1 px-2 py-0.5 text-xs font-mono rounded-full border ${s.cls}`}>
+                    {s.label}
+                  </span>
+                </div>
+              </a>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .shiny-sec {
+    background: linear-gradient(135deg, #00e5ff 25%, #b8f7ff 50%, #00e5ff 75%);
+    background-size: 400% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shine 3s linear infinite;
+  }
+
+  @keyframes shine {
+    0% { background-position: 100% 50%; }
+    30%, 70% { background-position: 0% 50%; }
+  }
+</style>
