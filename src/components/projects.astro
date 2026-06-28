@@ -12,7 +12,7 @@ interface Project {
 const statusMap = {
   active: { label: "进行中", cls: "text-[var(--accent)] border-[var(--accent)]/40 bg-[var(--accent)]/5" },
   wip: { label: "筹备中", cls: "text-[var(--sec)] border-[var(--sec)]/40 bg-[var(--sec)]/5" },
-  archived: { label: "往届回顾", cls: "text-[var(--white-icon)] border-[var(--white-icon-tr)] bg-[#ffffff04]" },
+  archived: { label: "", cls: "text-[var(--white-icon)] border-[var(--white-icon-tr)] bg-[#ffffff04]" },
 } as const;
 
 const projects: Project[] = [
@@ -53,7 +53,7 @@ const projects: Project[] = [
       <span class="text-[var(--sec)] font-mono text-sm tracking-widest">社团项目</span>
       <span class="h-px flex-1 bg-gradient-to-r from-[var(--sec)] to-transparent opacity-40"></span>
     </div>
-    <h2 class="text-[var(--white)] text-4xl md:text-6xl font-bold mb-10 tracking-tight">// PROJECTS</h2>
+    <h2 class="text-[var(--white)] text-4xl md:text-6xl font-bold mb-10 tracking-tight">PROJECTS</h2>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       {
@@ -90,9 +90,11 @@ const projects: Project[] = [
                     {project.desc}
                   </p>
                 </div>
-                <span class={`shrink-0 mt-1 px-2 py-0.5 text-xs font-mono rounded-full border ${s.cls}`}>
-                  {s.label}
-                </span>
+                {s.label && (
+                  <span class={`shrink-0 mt-1 px-2 py-0.5 text-xs font-mono rounded-full border ${s.cls}`}>
+                    {s.label}
+                  </span>
+                )}
               </div>
             </div>
           );
