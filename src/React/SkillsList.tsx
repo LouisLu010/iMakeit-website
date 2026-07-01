@@ -65,6 +65,28 @@ const CategoryIcons: Record<string, React.ReactElement> = {
       <path d="M8 11a4 4 0 0 1 8 0" />
     </svg>
   ),
+  "3D 打印": (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="w-6 h-6 text-[var(--sec)]"
+    >
+      {/* 3D 打印机 + 打印平台 */}
+      <path d="M5 5h14" />
+      <path d="M7 5v5h10V5" />
+      <path d="M9 10h6" />
+      <path d="M12 10v3" />
+      <rect x="9" y="13" width="6" height="3" rx="0.5" />
+      <path d="M6 19h12" />
+      <path d="M4 16l2 3h12l2-3" />
+      <path d="M4 5v11M20 5v11" />
+    </svg>
+  ),
 };
 
 const SkillsList = () => {
@@ -85,6 +107,11 @@ const SkillsList = () => {
       "业余无线电入门培训",
       "通信实操与电波测试",
       "筹办中的校内通信比赛",
+    ],
+    "3D 打印": [
+      "从建模到切片，完整体验数字制造流程",
+      "打印机器人零件、外壳和创意小物件",
+      "调参 · 维护 · 材料选择一起上手",
     ],
   };
 
